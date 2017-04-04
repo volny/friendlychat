@@ -1,16 +1,4 @@
 <!doctype html>
-<!--
-  Copyright 2015 Google Inc. All rights reserved.
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-      https://www.apache.org/licenses/LICENSE-2.0
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License
--->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -107,10 +95,19 @@
   </main>
 </div>
 
-<!-- Firebase -->
-<!-- ***********************************************************************************************************************
-     * TODO(DEVELOPER): Paste the initialization snippet from: Firebase Console > Overview > Add Firebase to your web app. *
-     *********************************************************************************************************************** -->
+<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA3EuyhUXy__7zm9Xe76y9ODcDBA0TSvQo",
+    authDomain: "friendlychat-93782.firebaseapp.com",
+    databaseURL: "https://friendlychat-93782.firebaseio.com",
+    projectId: "friendlychat-93782",
+    storageBucket: "friendlychat-93782.appspot.com",
+    messagingSenderId: "706110977590"
+  };
+  firebase.initializeApp(config);
+</script>
 
 <script src="scripts/main.js"></script>
 </body>
