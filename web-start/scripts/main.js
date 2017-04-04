@@ -56,7 +56,7 @@ FriendlyChat.prototype.loadMessages = function() {
   this.messagesRef.off();
 
   // load messages and listen to new ones
-  const setMessages = function (data) {
+  const setMessage = function (data) {
     const val = data.val();
     this.displayMessage(data.key, val.name, val.text, val.photoUrl, val.imageUrl);
   }.bind(this);
@@ -70,9 +70,17 @@ FriendlyChat.prototype.saveMessage = function(e) {
   e.preventDefault();
   // Check that the user entered a message and is signed in.
   if (this.messageInput.value && this.checkSignedInWithMessage()) {
-
-    // TODO(DEVELOPER): push new message to Firebase.
-
+    const currentUser = this.auth.currentUser;
+    // add msg to FB db
+    this.messagesRef.push({
+      name: currentUser.displayName,
+      text: this.messageInput.value,
+      photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
+    }).then(function() {
+      // clear textfield and send button state
+      FriendlyChat.resetMaterialTextfield(this.messageInput);
+      this.toggleButton();
+    }.bind(this)).catch((error) => console.error('Error writing new message to Firebase Database', error));
   }
 };
 
