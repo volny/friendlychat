@@ -54,6 +54,15 @@ FriendlyChat.prototype.loadMessages = function() {
   this.messagesRef = this.database.ref('messages');
   // remove previouslisteners
   this.messagesRef.off();
+
+  // load messages and listen to new ones
+  const setMessages = function (data) {
+    const val = data.val();
+    this.displayMessage(data.key, val.name, val.text, val.photoUrl, val.imageUrl);
+  }.bind(this);
+  // limit to last 12 msgs
+  this.messagesRef.limitToLast(12).on('child_added', setMessage);
+  this.messagesRef.limitToLast(12).on('child_changed', setMessage);
 };
 
 // Saves a new message on the Firebase DB.
