@@ -10,3 +10,4 @@ GoogleService-Info.plist
 web/
 .firebaserc
 firebase-debug.log
+curl.sh
